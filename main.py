@@ -8,7 +8,7 @@ import seaborn as sns
 data = pd.read_csv("insurance.csv")
 
 #Comprendre les données
-print(data.head(30))
+print(data.head())
 print(data.info())
 print(data.describe())
 print(data['age'].value_counts())
@@ -58,7 +58,7 @@ colonnes_num = ["age","bmi","charges"]
 for col in colonnes_num:
     outliers = detect_val_aber(data,col)
     print(f"valeurs aberrantes pour {col}:{outliers.shape[0]} observations")
-#visualiser les valeurs aberrantes dand la boite à moustache
+#visualiser les valeurs aberrantes 
 plt.figure(figsize=(12, 5))
 for i, col in enumerate(colonnes_num):
     plt.subplot(1, 3, i + 1)
@@ -70,7 +70,7 @@ plt.show()
 #charges a des valeurs très élevées qui faussaient la détection des outliers.
 #En appliquant log(charges), on réduit l’écart entre les valeurs extrêmes et la médiane,
 # rendant les données plus symétriques et faciles à analyser.
-data["log_charges"] = np.log(data["charges"])
+data["charges"] = np.log(data["charges"])
 # sns.boxplot(y=data["log_charges"])
 # plt.title("Boxplot de log(charges)")
 # plt.show()
@@ -81,10 +81,10 @@ data["log_charges"] = np.log(data["charges"])
 
 from sklearn.preprocessing import StandardScaler
 
-scaler = StandardScaler()
-data[["age","bmi","log_charges"]]=scaler.fit_transform(data[["age","bmi","log_charges"]])
-print(data.head())
-print(data.describe())
+# scaler = StandardScaler()
+# data[["bmi","log_charges"]]=scaler.fit_transform(data[["age","bmi","log_charges"]])
+# print(data.head())
+# print(data.describe())
 #les données sont bien standarisées
 
 #passons à l'analyse des relations entre log_charges et les autres variables
@@ -132,11 +132,11 @@ from sklearn.linear_model import LinearRegression
 X=data[["age","bmi","smoker"]]
 Y=data["log_charges"]
 
-model = LinearRegression()
-model.fit(X,Y)
+model1 = LinearRegression()
+model1.fit(X,Y)
 
 #prediction
-y_pred = model.predict(X)
+y_pred = model1.predict(X)
 
 #tracage de la courbe
 plt.scatter(Y, y_pred, color="blue", alpha=0.5)
