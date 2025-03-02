@@ -15,28 +15,28 @@ print(data['age'].value_counts())
 print(data['sex'].value_counts())
 print(data['smoker'].value_counts())
 
-#Visualiser les valeurs aberrantes
+# Visualiser les valeurs aberrantes
 # sns.boxplot(x=data['age'])
-# #plt.hist(data['age'])
-# #plt.xlabel('age')
-# #plt.ylabel('frequences')
-# plt.title('distribution d\'age')
-# plt.show()
-#
+plt.hist(data['age'])
+plt.xlabel('age')
+plt.ylabel('frequences')
+plt.title('distribution d\'age')
+plt.show()
+
 # sns.boxplot(x=data['bmi'])
-# #plt.hist(data['bmi'])
-# #plt.xlabel('bmi')
-# #plt.ylabel('frequency')
-# plt.title('distribution du bmi')
-# plt.show()
-#
-#
+plt.hist(data['bmi'])
+plt.xlabel('bmi')
+plt.ylabel('frequency')
+plt.title('distribution du bmi')
+plt.show()
+
+
 # sns.boxplot(x=data['charges'])
-# #plt.hist(data['charges'])
-# #plt.xlabel('charges')
-# #plt.ylabel('frequency')
-# plt.title('distribution des charges')
-# plt.show()
+plt.hist(data['charges'])
+plt.xlabel('charges')
+plt.ylabel('frequency')
+plt.title('distribution des charges')
+plt.show()
 
 
 #Detection des valeurs aberrantes
